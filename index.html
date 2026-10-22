@@ -1,0 +1,135 @@
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="theme-color" content="#171a20">
+  <meta name="description" content="대륙의 한 사람으로 태어나 - 중세 판타지 인생 시뮬레이션 RPG">
+  <title>대륙의 한 사람으로 태어나</title>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <div class="app-shell">
+    <header class="topbar">
+      <a class="brand" href="#" aria-label="홈">
+        <span class="brand-mark">✦</span>
+        <span><strong>대륙의 한 사람으로 태어나</strong><small>AN ORDINARY LIFE IN FANTASY</small></span>
+      </a>
+      <button id="menuBtn" class="icon-btn" aria-label="메뉴 열기">☰</button>
+    </header>
+
+    <main>
+      <section id="landing" class="hero panel">
+        <div class="hero-copy">
+          <p class="eyebrow">THE CHRONICLES OF A CONTINENT</p>
+          <h1>당신의 인생은<br><em>어디에서 시작될까?</em></h1>
+          <p class="muted lead">이름 없는 사람으로 태어나, 선택으로 운명을 써 내려가세요.</p>
+          <button id="newLifeBtn" class="primary-btn">새로운 인생 시작하기 <span>→</span></button>
+          <p class="tiny-note">현재 버전은 브라우저 로컬 저장을 지원합니다.</p>
+        </div>
+        <div class="hero-art" aria-hidden="true">
+          <div class="sun"></div><div class="mountain mountain-back"></div><div class="mountain mountain-front"></div>
+          <div class="castle">♜</div><div class="road"></div>
+          <div class="art-label">THE OLD KINGDOM</div>
+        </div>
+      </section>
+
+      <section id="creation" class="panel hidden">
+        <div class="section-heading">
+          <p class="eyebrow">CHAPTER 00 · BIRTH</p>
+          <h2>한 사람의 탄생</h2>
+          <p class="muted">출신은 시작을 바꾸지만, 당신의 삶을 결정하지는 않습니다.</p>
+        </div>
+        <form id="creationForm" class="creation-grid">
+          <label class="field full">이름
+            <input id="characterName" maxlength="16" placeholder="캐릭터 이름" required>
+          </label>
+          <fieldset class="field full">
+            <legend>태어난 신분</legend>
+            <div class="origin-options">
+              <label class="origin-card"><input type="radio" name="origin" value="commoner" checked><span class="origin-icon">🌾</span><strong>평민</strong><small>성실함과 생존력</small></label>
+              <label class="origin-card"><input type="radio" name="origin" value="merchant"><span class="origin-icon">🪙</span><strong>상인 가문</strong><small>재산과 교섭</small></label>
+              <label class="origin-card"><input type="radio" name="origin" value="noble"><span class="origin-icon">🦅</span><strong>몰락 귀족</strong><small>교육과 명예</small></label>
+              <label class="origin-card"><input type="radio" name="origin" value="orphan"><span class="origin-icon">🕯️</span><strong>고아</strong><small>독립과 눈치</small></label>
+            </div>
+          </fieldset>
+          <label class="field full">성장 배경
+            <select id="background">
+              <option value="village">변경의 작은 마을</option>
+              <option value="capital">왕도 외곽</option>
+              <option value="frontier">위험한 국경지대</option>
+            </select>
+          </label>
+          <div class="birth-preview full" id="birthPreview">평범하지만 단단한 시작. 삶은 이제부터입니다.</div>
+          <button class="primary-btn full" type="submit">이 인생을 시작한다 →</button>
+        </form>
+      </section>
+
+      <section id="game" class="hidden">
+        <div class="game-header panel">
+          <div><p class="eyebrow" id="chapterLabel">CHAPTER 01 · CHILDHOOD</p><h2 id="characterTitle">이름</h2><p id="characterSubtitle" class="muted">평민 · 변경의 작은 마을</p></div>
+          <div class="age-block"><strong id="ageValue">12</strong><span>세</span><small id="yearValue">왕국력 100년</small></div>
+        </div>
+        <div class="game-layout">
+          <div class="main-column">
+            <section class="panel status-panel">
+              <div class="panel-title"><h3>인물 기록</h3><span id="lifeStatus" class="status-pill">생존</span></div>
+              <div class="resource-row">
+                <div class="resource"><span>❤️ 체력</span><strong id="healthValue">100 / 100</strong><div class="meter"><i id="healthMeter"></i></div></div>
+                <div class="resource"><span>✨ 경험치</span><strong id="xpValue">0 XP</strong><div class="meter xp-meter"><i id="xpMeter"></i></div></div>
+              </div>
+              <div class="stats-grid" id="statsGrid"></div>
+              <div class="wealth-row"><span>🪙 보유 골드</span><strong id="goldValue">20 G</strong><span>🏅 명성</span><strong id="fameValue">0</strong></div>
+            </section>
+
+            <section class="panel action-panel">
+              <div class="panel-title"><div><p class="eyebrow">YOUR CHOICE</p><h3>오늘은 무엇을 할까요?</h3></div><span class="muted small">행동마다 시간이 흐릅니다</span></div>
+              <div class="action-grid">
+                <button class="action-card" data-action="work"><span>⚒️</span><strong>일하기</strong><small>골드를 벌고 경험을 얻는다</small></button>
+                <button class="action-card" data-action="train"><span>🗡️</span><strong>훈련하기</strong><small>능력치를 단련한다</small></button>
+                <button class="action-card" data-action="study"><span>📚</span><strong>공부하기</strong><small>지식과 기술을 쌓는다</small></button>
+                <button class="action-card" data-action="adventure"><span>🧭</span><strong>모험 떠나기</strong><small>위험과 보상을 감수한다</small></button>
+                <button class="action-card" data-action="rest"><span>🛏️</span><strong>휴식하기</strong><small>체력을 회복한다</small></button>
+                <button class="action-card" data-action="social"><span>🍻</span><strong>사람 만나기</strong><small>인맥과 명성을 얻는다</small></button>
+              </div>
+              <div id="eventBox" class="event-box hidden" aria-live="polite"></div>
+            </section>
+          </div>
+          <aside class="side-column">
+            <section class="panel">
+              <div class="panel-title"><h3>인생 연대기</h3><span id="logCount" class="muted small">0 기록</span></div>
+              <ol id="chronicleList" class="chronicle-list"></ol>
+            </section>
+            <section class="panel">
+              <div class="panel-title"><h3>온라인 기록</h3><span class="status-pill offline">오프라인</span></div>
+              <p class="muted small">현재는 이 기기의 브라우저에만 저장됩니다. 온라인 계정과 전체 이용자 랭킹은 Supabase 설정 후 활성화할 수 있습니다.</p>
+              <button id="leaderboardBtn" class="secondary-btn">로컬 기록 보기</button>
+            </section>
+            <button id="endLifeBtn" class="danger-btn">인생 마무리하기</button>
+            <button id="saveExportBtn" class="secondary-btn">저장 데이터 내보내기</button>
+            <label class="secondary-btn import-label">저장 데이터 가져오기<input id="importFile" type="file" accept="application/json"></label>
+          </aside>
+        </div>
+      </section>
+
+      <section id="records" class="panel hidden">
+        <div class="panel-title"><div><p class="eyebrow">HALL OF LIVES</p><h2>인생의 기록</h2></div><button id="backToGameBtn" class="secondary-btn">돌아가기</button></div>
+        <p class="muted">이 기기에 저장된 인생 기록입니다. 공개 랭킹이 아닌 개인 기기 기록입니다.</p>
+        <div id="recordsList" class="records-list"></div>
+      </section>
+
+      <section id="ending" class="panel hidden">
+        <p class="eyebrow">THE END OF A CHAPTER</p><h2 id="endingTitle">한 사람의 생애</h2>
+        <p id="endingSummary" class="lead"></p>
+        <div id="endingStats" class="ending-stats"></div>
+        <div id="endingChronicle" class="ending-chronicle"></div>
+        <button id="rebirthBtn" class="primary-btn">새로운 인생 시작하기 →</button>
+      </section>
+    </main>
+    <footer><span>✦ 대륙의 한 사람으로 태어나</span><span>프로토타입 v0.1 · 판타지 세계의 첫 기록</span></footer>
+  </div>
+  <div id="toast" class="toast" role="status" aria-live="polite"></div>
+  <dialog id="menuDialog" class="menu-dialog"><button id="closeMenuBtn" class="dialog-close">×</button><h3>여행자 메뉴</h3><button id="menuContinue" class="secondary-btn">인생 이어하기</button><button id="menuRecords" class="secondary-btn">내 기록 보기</button><button id="menuNew" class="secondary-btn">새 인생 시작</button><p class="muted small">새 인생은 기존 인생을 기록으로 저장한 뒤 시작합니다.</p></dialog>
+  <script src="js/app.js"></script>
+</body>
+</html>
